@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,16 +13,19 @@ export class SignInComponent {
     email: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(2)]],
   });
+
   constructor(
     private userService: UserService,
-    private formBuiler: FormBuilder
+    private formBuiler: FormBuilder,
+    private router: Router
   ) {}
 
   onSubmit() {
     this.userService.onSignIn(this.userForm.value).subscribe((result: any) => {
-      console.log(result);
+      this.userService.user = result;
+      this.userForm.reset();
+      this.router.navigateByUrl('/cards');
     });
-    this.userForm.reset();
   }
 
   get email() {

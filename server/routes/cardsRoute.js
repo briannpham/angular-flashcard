@@ -9,11 +9,11 @@ const {
 
 const router = express.Router();
 
-router.get("/", loadCards, (req, res) => {
+router.get("/", protect, loadCards, (req, res) => {
   return res.status(200).json(res.locals.cards);
 });
 
-router.post("/", protect, createCard, (req, res) => {
+router.post("/create", protect, createCard, (req, res) => {
   return res.status(200).json(res.locals.newCard);
 });
 

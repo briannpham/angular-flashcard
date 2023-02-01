@@ -8,6 +8,8 @@ const BASE_URL = 'http://localhost:3000/api';
   providedIn: 'root',
 })
 export class UserService {
+  user: any;
+
   constructor(private http: HttpClient) {}
 
   onSignIn(

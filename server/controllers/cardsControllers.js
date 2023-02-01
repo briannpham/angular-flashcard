@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 // @route:   GET /api/cards
 const loadCards = async (req, res, next) => {
   try {
-    const cards = await Card.find().sort({
+    const cards = await Card.find({ user: req.user._id }).sort({
       createdAt: -1,
     });
 

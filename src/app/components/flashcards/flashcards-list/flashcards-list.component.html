@@ -1,0 +1,29 @@
+<mat-card *ngFor="let flashcard of flashcards">
+  <mat-card-header>
+    <mat-card-title>{{ flashcard.question }}</mat-card-title>
+    <mat-card-subtitle>{{ flashcard.answer }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <!-- UPDATE -->
+    <button
+      mat-stroked-button
+      (click)="check.emit(flashcard); $event.stopImmediatePropagation()"
+    >
+      Check - {{ flashcard.status }}
+    </button>
+    <button
+      mat-stroked-button
+      (click)="like.emit(flashcard._id); $event.stopImmediatePropagation()"
+    >
+      Like - {{ flashcard.favorite }}
+    </button>
+    <button
+      mat-stroked-button
+      (click)="delete.emit(flashcard._id); $event.stopImmediatePropagation()"
+      color="warn"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-button>{{ flashcard.createdAt | date }}</button>
+  </mat-card-actions>
+</mat-card>

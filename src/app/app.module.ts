@@ -11,6 +11,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FlashcardsComponent } from './components/flashcards/flashcards.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { FlashcardFormComponent } from './components/flashcards/flashcard-form/flashcard-form.component';
+import { FlashcardsListComponent } from './components/flashcards/flashcards-list/flashcards-list.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     FlashcardsComponent,
     SignInComponent,
     SignUpComponent,
+    FlashcardFormComponent,
+    FlashcardsListComponent,
   ],
   imports: [
     BrowserModule,

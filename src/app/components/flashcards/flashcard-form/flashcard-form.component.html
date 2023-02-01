@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> Add new card </mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="flashcardForm" (submit)="onSubmit()">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Question</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Question/Front"
+          name="question"
+          formControlName="question"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Answer</mat-label>
+        <textarea
+          matInput
+          type="text"
+          placeholder="Answer/Back"
+          name="answer"
+          formControlName="answer"
+          required
+        ></textarea>
+      </mat-form-field>
+      <mat-card-actions>
+        <button type="sumit" mat-stroked-button color="primary">Save</button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="accent"
+          (click)="cancel.emit()"
+        >
+          Cancel
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </form>
+</mat-card>

@@ -1,1 +1,16 @@
-<p>flashcards works!</p>
+<div class="flashcards-container">
+  <div class="flashcard-form">
+    <app-flashcard-form
+      (save)="createCard($event)"
+      (cancel)="cancelCard()"
+    ></app-flashcard-form>
+  </div>
+  <div class="flashcards-list">
+    <app-flashcards-list
+      [flashcards]="cards"
+      (check)="changeStatus($event)"
+      (like)="changeFavorite($event)"
+      (delete)="changeDelete($event)"
+    ></app-flashcards-list>
+  </div>
+</div>
