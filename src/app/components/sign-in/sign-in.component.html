@@ -1,17 +1,28 @@
 <main>
-  <form action="" class="form">
+  <form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <h1>Sign in</h1>
     <div class="form-control">
       <label for="email">Email Address</label>
-      <input type="text" id="email" name="email" />
+      <input
+        type="text"
+        id="email"
+        name="email"
+        formControlName="email"
+        required
+      />
     </div>
     <div class="form-control">
       <label for="email">Password</label>
-      <input type="text" id="password" name="password" />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        formControlName="password"
+      />
     </div>
     <!-- Error messages -->
-    <button type="button">SIGN IN</button>
+    <button type="submit" [disabled]="!userForm.valid">SIGN IN</button>
     <div type="button" id="register">Don&apos;t have an account? Sign up</div>
-    <div id="copyright">Copyright © 2022</div>
+    <div id="copyright">Copyright © 2023</div>
   </form>
 </main>
