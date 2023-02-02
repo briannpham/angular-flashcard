@@ -1,24 +1,43 @@
 <mat-card *ngFor="let flashcard of flashcards">
   <mat-card-header>
     <mat-card-title>{{ flashcard.question }}</mat-card-title>
-    <mat-card-subtitle>{{ flashcard.answer }}</mat-card-subtitle>
   </mat-card-header>
+  <mat-card-content>{{ flashcard.answer }}</mat-card-content>
   <mat-card-actions>
     <!-- UPDATE -->
     <button
-      mat-stroked-button
+      mat-button
       (click)="check.emit(flashcard); $event.stopImmediatePropagation()"
+      *ngIf="flashcard.status === 'not reviewed'; else elseStatusBlock"
     >
-      Check - {{ flashcard.status }}
+      {{ flashcard.status }}
     </button>
+    <ng-template #elseStatusBlock>
+      <button
+        mat-button
+        (click)="check.emit(flashcard); $event.stopImmediatePropagation()"
+      >
+        <mat-icon>check</mat-icon> {{ flashcard.status }}
+      </button>
+    </ng-template>
     <button
-      mat-stroked-button
+      mat-button
       (click)="like.emit(flashcard); $event.stopImmediatePropagation()"
+      *ngIf="flashcard.favorite; else elseLikeBlock"
     >
-      Like - {{ flashcard.favorite }}
+      <mat-icon class="like">favorite</mat-icon>
     </button>
+    <ng-template #elseLikeBlock
+      ><button
+        mat-button
+        (click)="like.emit(flashcard); $event.stopImmediatePropagation()"
+      >
+        <mat-icon class="unlike">favorite_outline</mat-icon>
+      </button></ng-template
+    >
+
     <button
-      mat-stroked-button
+      mat-button
       (click)="delete.emit(flashcard._id); $event.stopImmediatePropagation()"
       color="warn"
     >

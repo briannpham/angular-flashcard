@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 
@@ -11,9 +11,9 @@ export class AppComponent {
   title = 'Angular Flashcard';
   links = [
     { path: '/home', icon: 'home', title: 'Home' },
-    { path: '/cards', icon: 'view_list', title: 'Cards' },
-    { path: '/login', icon: 'view_list', title: 'Sign in' },
-    { path: '/signup', icon: 'view_list', title: 'Register' },
+    { path: '/dashboard', icon: 'dashboard', title: 'Dashboard' },
+    { path: '/login', icon: 'login', title: 'Sign in' },
+    { path: '/signup', icon: 'how_to_reg', title: 'Register' },
   ];
 
   constructor(private userService: UserService, private router: Router) {}

@@ -1,17 +1,19 @@
-<h1 *ngIf="!user; else elseBlock">You gotta sign in</h1>
-<ng-template class="flashcards-container" #elseBlock>
-  <div class="flashcard-form">
-    <app-flashcard-form
-      (save)="createCard($event)"
-      (cancel)="cancelCard()"
-    ></app-flashcard-form>
-  </div>
-  <div class="flashcards-list">
-    <app-flashcards-list
-      [flashcards]="cards"
-      (check)="changeStatus($event)"
-      (like)="changeFavorite($event)"
-      (delete)="deleteCard($event)"
-    ></app-flashcards-list>
-  </div>
-</ng-template>
+<div class="flashcard-container">
+  <h1 *ngIf="!user; else elseBlock">Sign in to see your Dashboard</h1>
+  <ng-template #elseBlock>
+    <div class="flashcard-form">
+      <app-flashcard-form
+        (save)="createCard($event)"
+        (cancel)="cancelCard()"
+      ></app-flashcard-form>
+    </div>
+    <div class="flashcards-list">
+      <app-flashcards-list
+        [flashcards]="cards"
+        (check)="changeStatus($event)"
+        (like)="changeFavorite($event)"
+        (delete)="deleteCard($event)"
+      ></app-flashcards-list>
+    </div>
+  </ng-template>
+</div>
