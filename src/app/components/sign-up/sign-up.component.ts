@@ -28,7 +28,7 @@ export class SignUpComponent {
       console.log(result);
       this.userService.user = result;
       this.userForm.reset();
-      this.router.navigateByUrl('/cards');
+      this.router.navigateByUrl('/dashboard');
     });
   }
 }

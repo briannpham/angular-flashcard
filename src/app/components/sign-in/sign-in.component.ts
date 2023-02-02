@@ -24,7 +24,7 @@ export class SignInComponent {
     this.userService.onSignIn(this.userForm.value).subscribe((result: any) => {
       this.userService.user = result;
       this.userForm.reset();
-      this.router.navigateByUrl('/cards');
+      this.router.navigateByUrl('/dashboard');
     });
   }
 

@@ -1,51 +1,80 @@
-<main>
-  <form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <h1>Register</h1>
-    <div class="form-control name">
-      <div id="first-name">
-        <label for="firstName">First Name</label>
+<mat-card class="register-container">
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
         <input
           type="text"
-          id="firstName"
+          matInput
+          placeholder="First Name"
           name="firstName"
           formControlName="firstName"
+          required
         />
-      </div>
-      <div id="last-name">
-        <label for="lastName">Last Name</label>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
         <input
           type="text"
-          id="lastName"
+          matInput
+          placeholder="Last Name"
           name="lastName"
           formControlName="lastName"
+          required
         />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email Address</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Email"
+          name="email"
+          formControlName="email"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          name="password"
+          formControlName="password"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Confirm your password"
+          name="confirmPassword"
+          formControlName="confirmPassword"
+          required
+        />
+      </mat-form-field>
+      <mat-card-actions>
+        <button
+          type="submit"
+          mat-stroked-button
+          color="primary"
+          [disabled]="!userForm.valid"
+        >
+          Sign up
+        </button>
+      </mat-card-actions>
+      <div class="login-footer">
+        <button type="button" mat-flat-button routerLink="/login">
+          Already registered? Sign in
+        </button>
+        <div>Copyright © 2023</div>
       </div>
-    </div>
-    <div class="form-control">
-      <label for="email">Email Address</label>
-      <input type="text" id="email" name="email" formControlName="email" />
-    </div>
-    <div class="form-control">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        formControlName="password"
-      />
-    </div>
-    <div class="form-control">
-      <label for="confirmPassword">Confirm Password</label>
-      <input
-        type="password"
-        id="confirmPassword"
-        name="confirmPassword"
-        formControlName="confirmPassword"
-      />
-    </div>
-    <!-- {errorMessage && <div class='error-message login'>{errorMessage}</div>} -->
-    <button type="submit" [disabled]="!userForm.valid">REGISTER</button>
-    <div type="button" id="sign-in">Sign in</div>
-    <div id="copyright">Copyright © 2023</div>
+    </mat-card-content>
   </form>
-</main>
+</mat-card>
