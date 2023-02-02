@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlashcardsService } from 'src/app/services/flashcards.service';
 import { FlashCard } from 'src/app/models/flashcard';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-flashcards',
@@ -9,6 +10,7 @@ import { FlashCard } from 'src/app/models/flashcard';
 })
 export class FlashcardsComponent implements OnInit {
   cards: FlashCard[] = [];
+  cards$: any;
 
   constructor(private flashCardService: FlashcardsService) {}
 
@@ -17,13 +19,19 @@ export class FlashcardsComponent implements OnInit {
   }
 
   changeStatus(card: any) {
-    console.log(card);
+    const updatedCard = {
+      ...card,
+      status: card.status === 'not reviewed' ? 'reviewed' : 'not reviewed',
+    };
+    this.updateCard(updatedCard);
   }
-  changeFavorite(id: any) {
-    console.log(id);
-  }
-  changeDelete(id: any) {
-    console.log(id);
+
+  changeFavorite(card: any) {
+    const updatedCard = {
+      ...card,
+      favorite: !card.favorite,
+    };
+    this.updateCard(updatedCard);
   }
 
   saveCard(card: any) {
@@ -37,6 +45,7 @@ export class FlashcardsComponent implements OnInit {
     this.flashCardService
       .getCards()
       .subscribe((result: FlashCard[]) => (this.cards = result));
+    // this.cards$ = this.flashCardService.getCards();  // see some flickering when doing observable stream
   }
 
   createCard(card: FlashCard) {

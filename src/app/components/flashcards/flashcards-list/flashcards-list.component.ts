@@ -7,7 +7,7 @@ import { FlashCard } from 'src/app/models/flashcard';
   styleUrls: ['./flashcards-list.component.scss'],
 })
 export class FlashcardsListComponent {
-  @Input() flashcards: FlashCard[] = [];
+  @Input() flashcards: FlashCard[] | null = [];
   @Output() like = new EventEmitter();
   @Output() check = new EventEmitter();
   @Output() delete = new EventEmitter();

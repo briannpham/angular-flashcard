@@ -13,7 +13,7 @@
     </button>
     <button
       mat-stroked-button
-      (click)="like.emit(flashcard._id); $event.stopImmediatePropagation()"
+      (click)="like.emit(flashcard); $event.stopImmediatePropagation()"
     >
       Like - {{ flashcard.favorite }}
     </button>
