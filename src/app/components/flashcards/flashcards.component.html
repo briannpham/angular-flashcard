@@ -1,4 +1,5 @@
-<div class="flashcards-container">
+<h1 *ngIf="!user; else elseBlock">You gotta sign in</h1>
+<ng-template class="flashcards-container" #elseBlock>
   <div class="flashcard-form">
     <app-flashcard-form
       (save)="createCard($event)"
@@ -13,4 +14,4 @@
       (delete)="deleteCard($event)"
     ></app-flashcards-list>
   </div>
-</div>
+</ng-template>

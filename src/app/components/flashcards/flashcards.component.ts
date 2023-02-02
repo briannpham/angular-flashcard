@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FlashcardsService } from 'src/app/services/flashcards.service';
 import { FlashCard } from 'src/app/models/flashcard';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flashcards',
@@ -11,11 +13,18 @@ import { Observable } from 'rxjs';
 export class FlashcardsComponent implements OnInit {
   cards: FlashCard[] = [];
   cards$: any;
+  user = this.userService.user;
 
-  constructor(private flashCardService: FlashcardsService) {}
+  constructor(
+    private flashCardService: FlashcardsService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.fetchCards();
+    if (this.user) {
+      this.fetchCards(this.userService.user.token);
+    }
   }
 
   changeStatus(card: any) {
@@ -41,9 +50,9 @@ export class FlashcardsComponent implements OnInit {
     console.log('cancel');
   }
 
-  fetchCards() {
+  fetchCards(userToken: string) {
     this.flashCardService
-      .getCards()
+      .getCards(userToken)
       .subscribe((result: FlashCard[]) => (this.cards = result));
     // this.cards$ = this.flashCardService.getCards();  // see some flickering when doing observable stream
   }
@@ -51,18 +60,18 @@ export class FlashcardsComponent implements OnInit {
   createCard(card: FlashCard) {
     this.flashCardService
       .createCard(card)
-      .subscribe((result) => this.fetchCards());
+      .subscribe((result) => this.fetchCards(this.userService.user.token));
   }
 
   updateCard(card: FlashCard) {
     this.flashCardService
       .updateCard(card)
-      .subscribe((result) => this.fetchCards());
+      .subscribe((result) => this.fetchCards(this.userService.user.token));
   }
 
   deleteCard(cardId: any) {
     this.flashCardService
       .deleteCard(cardId)
-      .subscribe((result) => this.fetchCards());
+      .subscribe((result) => this.fetchCards(this.userService.user.token));
   }
 }

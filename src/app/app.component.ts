@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,5 +16,10 @@ export class AppComponent {
     { path: '/signup', icon: 'view_list', title: 'Register' },
   ];
 
-  constructor() {}
+  constructor(private userService: UserService, private router: Router) {}
+
+  onSignOut() {
+    this.userService.user = null;
+    this.router.navigateByUrl('/login');
+  }
 }
