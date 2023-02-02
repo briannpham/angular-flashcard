@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,13 +19,16 @@ export class SignUpComponent {
 
   constructor(
     private userService: UserService,
-    private formBuiler: FormBuilder
+    private formBuiler: FormBuilder,
+    private router: Router
   ) {}
 
   onSubmit() {
     this.userService.onSignUp(this.userForm.value).subscribe((result: any) => {
       console.log(result);
+      this.userService.user = result;
+      this.userForm.reset();
+      this.router.navigateByUrl('/cards');
     });
-    this.userForm.reset();
   }
 }
