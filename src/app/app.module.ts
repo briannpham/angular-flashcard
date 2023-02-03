@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from './material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { FlashcardFormComponent } from './components/flashcards/flashcard-form/flashcard-form.component';
 import { FlashcardsListComponent } from './components/flashcards/flashcards-list/flashcards-list.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoadingInterceptor } from './loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { FlashcardsListComponent } from './components/flashcards/flashcards-list
     SignUpComponent,
     FlashcardFormComponent,
     FlashcardsListComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,13 @@ import { FlashcardsListComponent } from './components/flashcards/flashcards-list
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

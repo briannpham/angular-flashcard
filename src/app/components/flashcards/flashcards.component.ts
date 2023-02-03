@@ -4,6 +4,7 @@ import { FlashCard } from 'src/app/models/flashcard';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-flashcards',
@@ -18,7 +19,8 @@ export class FlashcardsComponent implements OnInit {
   constructor(
     private flashCardService: FlashcardsService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    public loader: LoaderService
   ) {}
 
   ngOnInit(): void {
