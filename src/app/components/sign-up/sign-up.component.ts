@@ -18,7 +18,7 @@ export class SignUpComponent {
   });
 
   constructor(
-    private userService: UserService,
+  private userService: UserService,
     private formBuiler: FormBuilder,
     private router: Router
   ) {}
