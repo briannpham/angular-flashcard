@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'https://flashcards-backend-phi.vercel.app/api';
 
 @Injectable({
   providedIn: 'root',

@@ -9,7 +9,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { FlashCard } from '../models/flashcard';
 import { UserService } from './user.service';
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'https://flashcards-backend-phi.vercel.app/api';
 
 const httpOptions = {
   headers: new HttpHeaders({
