@@ -34,13 +34,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../src/index.html"));
-});
-
-app.use(express.static(path.join(__dirname, "../src")));
 app.use("/api/cards", cardsRouter);
 app.use("/api/user", userRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../dist/angular-flashcard")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "dist", "angular-flashcard", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Development"));
+}
 
 app.use((req, res) => {
   res.status(404).send("404 Errors");
